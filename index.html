@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Website Under Maintenance</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  :root {
+    --primary-color-start: #667eea;
+    --primary-color-end: #764ba2;
+    --accent-color: #f6f0ff;
+    --text-color: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color-start), var(--primary-color-end));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-align: center;
+    padding: 0 20px;
+  }
+  .container {
+    max-width: 450px;
+    background: rgba(255 255 255 / 0.1);
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 20px var(--shadow-color);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 1.5s ease forwards;
+  }
+  .icon {
+    font-size: 5rem;
+    animation: heartbeat 1.5s infinite;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+  p {
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+  }
+  .footer {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+  }
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+      color: #ffd700;
+    }
+    50% {
+      transform: scale(1.15);
+      color: #ffb700;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-labelledby="main-heading" aria-describedby="main-desc">
+    <div class="icon" aria-hidden="true">🛠️</div>
+    <h1 id="main-heading">Website Under Maintenance</h1>
+    <p id="main-desc">We are currently performing scheduled maintenance.<br />Thank you for your patience. Please check back soon!</p>
+    <div class="footer">&copy; 2025 SMA Islam Sudirman Tembarak</div>
+  </div>
+</body>
+</html>
+
