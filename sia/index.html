@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kekurangan Administrasi Alumni</title>
+    <!-- Tailwind CSS untuk Desain Hijau & Responsif Cepat -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1b4332', /* Hijau Tua */
+                        secondary: '#2d6a4f', /* Hijau Sedang */
+                        accent: '#52b788', /* Hijau Muda */
+                        lightbg: '#f4f9f4' /* Background Hijau Sangat Lembut */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-lightbg min-h-screen font-sans text-gray-800">
+
+    <!-- Header / Navbar -->
+    <header class="bg-primary text-white shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-5 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="text-center sm:text-left">
+                <h1 class="text-xl font-bold tracking-wide">Sistem Informasi Alumni</h1>
+                <p class="text-xs text-accent">Layanan Cek Administrasi Pengambilan Ijazah</p>
+            </div>
+            <span class="bg-secondary text-xs px-3 py-1 rounded-full text-emerald-100 border border-emerald-500">
+                Data Offline / Statis v1.0
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- Kartu Pencarian -->
+        <div class="bg-white rounded-2xl shadow-sm border border-emerald-100 p-6 mb-6">
+            <h2 class="text-lg font-semibold text-primary mb-2">Cari Data Alumni</h2>
+            <p class="text-sm text-gray-500 mb-4">Silakan masukkan NISN atau Nama Lengkap Anda untuk mengecek status tunggakan administrasi ijazah.</p>
+            
+            <form id="searchForm" class="flex flex-col sm:flex-row gap-3" onsubmit="searchAlumni(event)">
+                <div class="relative flex-1">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Masukkan NISN atau Nama Lengkap..." 
+                        class="w-full pl-4 pr-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all"
+                        required
+                    >
+                </div>
+                <button 
+                    type="submit" 
+                    class="bg-secondary hover:bg-primary text-white font-medium px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    Cek Status
+                </button>
+            </form>
+        </div>
+
+        <!-- Wadah Hasil Pencarian -->
+        <div id="resultContainer" class="hidden transition-all duration-300">
+            <!-- Hasil akan disuntikkan lewat JavaScript di sini -->
+        </div>
+
+        <!-- Informasi Tambahan -->
+        <div class="bg-emerald-50 border-l-4 border-secondary p-4 rounded-r-xl mt-6">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-secondary" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-primary">Catatan Alur Pelunasan:</h3>
+                    <p class="text-xs text-emerald-900 mt-1">Jika data Anda ditemukan memiliki kekurangan, silakan datang ke ruang Tata Usaha (TU) sekolah pada jam kerja dengan membawa slip pembayaran terakhir atau menghubungi kontak administrasi sekolah.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-xs text-gray-400">
+        &copy; 2026 Sistem Administrasi Sekolah. Desain Responsif Tanpa Database.
+    </footer>
+
+    <!-- JAVASCRIPT: LOGIK & DATA -->
+    <script>
+        // ==========================================
+        // SILAKAN EDIT/TAMBAH DATA ALUMNI DI SINI
+        // ==========================================
+        const databaseAlumni = [
+            {
+                nisn: "0051234567",
+                nama: "Ahmad Hidayat",
+                jurusan: "Teknik Kendaraan Ringan (TKR)",
+                tahunLulus: "2024",
+                status: "Belum Lunas",
+                rincian: [
+                    { komponen: "Sumbangan Pembinaan Pendidikan (SPP)", nominal: 450000 },
+                    { komponen: "Uang Gedung / Komite", nominal: 300000 },
+                    { komponen: "Administrasi Ujian", nominal: 100000 }
+                ]
+            },
+            {
+                nisn: "0069876543",
+                nama: "Siti Rahmawati",
+                jurusan: "Akuntansi",
+                tahunLulus: "2023",
+                status: "Belum Lunas",
+                rincian: [
+                    { komponen: "Tunggakan SPP 2 Bulan", nominal: 300000 },
+                    { komponen: "Denda Keterlambatan Buku Perpus", nominal: 250000 }
+                ]
+            },
+            {
+                nisn: "0055566677",
+                nama: "Budi Santoso",
+                jurusan: "Multimedia",
+                tahunLulus: "2024",
+                status: "Lunas",
+                rincian: [] // Kosong karena sudah lunas
+            }
+        ];
+
+        // Fungsi Format Rupiah
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+
+        // Fungsi Pencarian
+        function searchAlumni(event) {
+            event.preventDefault();
+            const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+            const container = document.getElementById('resultContainer');
+            
+            // Cari data berdasarkan NISN (persis) atau Nama (mengandung kata kunci)
+            const hasil = databaseAlumni.filter(siswa => 
+                siswa.nisn === keyword || siswa.nama.toLowerCase().includes(keyword)
+            );
+
+            container.classList.remove('hidden');
+            
+            if (hasil.length === 0) {
+                // Jika data tidak ditemukan
+                container.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 text-red-800 rounded-2xl p-6 text-center shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h3 class="text-base font-semibold mb-1">Data Tidak Ditemukan</h3>
+                        <p class="text-sm text-red-600">Mohon periksa kembali NISN atau ejaan nama Anda. Jika yakin benar, silakan hubungi pihak sekolah.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Jika data ditemukan, buat tampilan list (bisa menangani jika ada nama yang mirip)
+            let htmlContent = '';
+            
+            hasil.forEach(siswa => {
+                let totalTunggakan = siswa.rincian.reduce((sum, item) => sum + item.nominal, 0);
+                
+                let statusBadge = siswa.status === 'Lunas' 
+                    ? `<span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-300">Lunas / Siap Ambil</span>`
+                    : `<span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full border border-amber-300">Tertahan (Ada Tunggakan)</span>`;
+
+                let rincianRows = '';
+                if (siswa.rincian.length > 0) {
+                    siswa.rincian.forEach((item, index) => {
+                        rincianRows += `
+                            <tr class="${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} border-b border-gray-100">
+                                <td class="px-4 py-3 text-sm text-gray-700">${item.komponen}</td>
+                                <td class="px-4 py-3 text-sm font-semibold text-gray-900 text-right">${formatRupiah(item.nominal)}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    rincianRows = `
+                        <tr>
+                            <td colspan="2" class="px-4 py-6 text-sm text-center text-emerald-600 font-medium bg-emerald-50/50">
+                                Seluruh administrasi telah diselesaikan. Silakan hubungi TU untuk pengambilan ijazah asli.
+                            </td>
+                        </tr>
+                    `;
+                }
+
+                htmlContent += `
+                    <div class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden mb-6">
+                        <!-- Header Kartu Siswa -->
+                        <div class="bg-gradient-to-r from-primary to-secondary p-5 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+                            <div>
+                                <h3 class="text-xl font-bold tracking-wide">${siswa.nama}</h3>
+                                <p class="text-xs text-emerald-200 mt-1">NISN: ${siswa.nisn} &bull; ${siswa.jurusan} &bull; Lulusan ${siswa.tahunLulus}</p>
+                            </div>
+                            <div>
+                                ${statusBadge}
+                            </div>
+                        </div>
+
+                        <!-- Detail Tabel Rincian -->
+                        <div class="p-6">
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3 tracking-wide uppercase">Rincian Kekurangan Administrasi</h4>
+                            <div class="overflow-x-auto border border-gray-200 rounded-xl">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-emerald-50/70 border-b border-gray-200 text-primary font-semibold text-xs uppercase">
+                                            <th class="px-4 py-3">Komponen Administrasi</th>
+                                            <th class="px-4 py-3 text-right">Nominal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${rincianRows}
+                                    </tbody>
+                                    ${siswa.rincian.length > 0 ? `
+                                    <tfoot>
+                                        <tr class="bg-emerald-50 border-t-2 border-secondary font-bold text-gray-900">
+                                            <td class="px-4 py-4 text-sm text-primary">Total Yang Harus Dilunasi</td>
+                                            <td class="px-4 py-4 text-base text-right text-emerald-800">${formatRupiah(totalTunggakan)}</td>
+                                        </tr>
+                                    </tfoot>
+                                    ` : ''}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = htmlContent;
+        }
+    </script>
+</body>
+</html>
