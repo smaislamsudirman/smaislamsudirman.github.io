@@ -98,6 +98,17 @@ body {
     color: #1e293b;
 }
 
+.guide-portal {
+    background-color: rgba(245, 158, 11, 0.05);
+    border: 1px solid #f59e0b; /* Warna Kuning Amber */
+    color: #f8fafc;
+}
+.guide-portal:hover {
+    background-color: #f59e0b;
+    color: #0f172a;
+    transform: translateX(5px);
+}
+
 /* TOMBOL NON-AKTIF (SIMULASI KELAS LAIN) */
 .disabled-portal {
     background-color: #0f172a;
