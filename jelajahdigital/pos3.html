@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POS 3: Flora & Fauna AI - Jelajah Teknologi</title>
+    <title>POS 3: Finish & Video Editing - Jelajah Teknologi</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +12,6 @@
             --primary-amber: #ffb703;
             --accent-cyan: #00f5d4;
             --accent-green: #05d544;
-            --accent-red: #ff2a6d;
             --text-light: #f8f9fa;
             --text-dim: #a0aec0;
             --border-glow: rgba(5, 213, 68, 0.3);
@@ -49,6 +48,7 @@
             backdrop-filter: blur(12px);
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
 
         .container::before {
@@ -61,9 +61,11 @@
             background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
+        .trophy-icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(5, 213, 68, 0.5));
         }
 
         .badge {
@@ -76,7 +78,7 @@
             padding: 4px 12px;
             border-radius: 20px;
             border: 1px solid var(--accent-green);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             text-transform: uppercase;
         }
 
@@ -86,151 +88,146 @@
             color: var(--accent-green);
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        p.subtitle {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-        }
-
-        .mission-box {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 3px solid var(--accent-green);
-            padding: 12px 16px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .mission-title {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 4px;
-        }
-
-        .target-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 18px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .target-icon {
-            font-size: 2.5rem;
             margin-bottom: 8px;
         }
 
-        .target-desc {
+        .congrats-text {
             font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 12px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .guide-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed var(--accent-cyan);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .guide-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guide-list {
+            list-style: none;
+            counter-reset: edit-counter;
+        }
+
+        .guide-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
             line-height: 1.4;
         }
 
-        .input-group {
-            margin-bottom: 16px;
+        .guide-list li::before {
+            content: counter(edit-counter);
+            counter-increment: edit-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 245, 212, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.7rem;
+            line-height: 18px;
         }
 
-        .input-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .input-control {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .input-control:focus {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 10px rgba(5, 213, 68, 0.3);
-        }
-
-        .btn-submit {
+        .btn-action {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--accent-green), #00b4d8);
-            color: #000;
+            padding: 13px;
+            border-radius: 8px;
             font-family: 'Orbitron', sans-serif;
             font-weight: 800;
-            font-size: 0.95rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(5, 213, 68, 0.3);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(5, 213, 68, 0.5);
-        }
-
-        .feedback {
-            margin-top: 14px;
-            padding: 10px;
-            border-radius: 8px;
             font-size: 0.85rem;
-            text-align: center;
-            display: none;
-            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
         }
 
-        .feedback.error {
-            display: block;
-            background: rgba(255, 42, 109, 0.15);
-            border: 1px solid var(--accent-red);
-            color: #ff7597;
+        .btn-capcut {
+            background: linear-gradient(135deg, #00f5d4, #00b4d8);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 245, 212, 0.3);
         }
 
-        .feedback.success {
-            display: block;
-            background: rgba(5, 213, 68, 0.15);
-            border: 1px solid var(--accent-green);
-            color: #52fe7d;
+        .btn-drive {
+            background: linear-gradient(135deg, var(--primary-amber), #e69d00);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(255, 183, 3, 0.3);
         }
 
-        .finish-card {
-            display: none;
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 183, 3, 0.08);
-            border: 1px solid var(--primary-amber);
+        .btn-action:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .social-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            text-align: center;
-            animation: fadeIn 0.5s ease-in-out;
+            padding: 14px;
+            margin-top: 20px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .social-title {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .finish-title {
-            color: var(--primary-amber);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 42, 109, 0.1);
+            border: 1px solid rgba(255, 42, 109, 0.4);
+            color: #ff7597;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 42, 109, 0.25);
+            transform: scale(1.03);
         }
 
         .footer {
-            margin-top: 24px;
+            margin-top: 20px;
             text-align: center;
             font-size: 0.75rem;
             color: var(--text-dim);
@@ -242,90 +239,53 @@
 <body>
 
     <div class="container">
-        <header class="header">
-            <span class="badge">Pos Terakhir &bull; Pos 3</span>
-            <h1>Flora & Fauna AI</h1>
-            <p class="subtitle">Identifikasi Hayati Lingkungan Sekolah</p>
-        </header>
+        <div class="trophy-icon">🏆</div>
+        <span class="badge">Pos Terakhir &bull; Pos 3</span>
+        <h1>Selamat! Misi Selesai</h1>
+        
+        <p class="congrats-text">
+            Luar biasa! Sangga/Regu kalian berhasil menyelesaikan seluruh rute <strong>Jelajah Teknologi Digital 60 Menit</strong> dengan sangat baik! 🎉
+        </p>
 
-        <section class="mission-box">
-            <div class="mission-title">🎯 MISI POS 3</div>
-            <p style="font-size: 0.8rem; color: var(--text-dim);">
-                Gunakan kamera HP & aplikasi AI (**Google Lens / PlantNet**) untuk memindai tanaman target di sekitar lokasi Pos 3!
-            </p>
-        </section>
+        <!-- Petunjuk Edit CapCut -->
+        <div class="guide-box">
+            <div class="guide-title">🎬 TUGAS AKHIR: EDIT VIDEO CAPCUT</div>
+            <ol class="guide-list">
+                <li>Klik tombol <strong>"Gunakan Template CapCut"</strong> di bawah ini.</li>
+                <li>Pilih foto/video dokumentasi keseruan kalian di Pos 1, Pos 2, dan Pos 3.</li>
+                <li>Ekspor/simpan video hasil editan dengan kualitas terbaik.</li>
+                <li>Unggah video tersebut ke folder Google Drive panitia.</li>
+            </ol>
+            
+            <!-- Link Template CapCut (Ganti href dengan link template CapCut kalian) -->
+            <a href="https://www.capcut.com/" target="_blank" class="btn-action btn-capcut">
+                ✂️ GUNAKAN TEMPLATE CAPCUT
+            </a>
+        </div>
 
-        <section class="target-card">
-            <div class="target-icon">🌿🔍</div>
-            <p class="target-desc">
-                Cari tanaman berdaun ungu/hijau khas yang tumbuh di pot/taman area ini. Pindai menggunakan kamera Google Lens untuk menemukan **Nama Latin** atau **Nama Lokal** dari tanaman tersebut!
-            </p>
-        </section>
+        <!-- Tombol Upload Drive -->
+        <!-- Link Google Drive (Ganti href dengan link folder Drive Panitia) -->
+        <a href="https://drive.google.com/" target="_blank" class="btn-action btn-drive">
+            📁 UPLOAD HASIL EDITAN KE DRIVE
+        </a>
 
-        <form id="aiForm" onsubmit="validateFlora(event)">
-            <div class="input-group">
-                <label for="speciesInput">🌱 HASIL IDENTIFIKASI AI:</label>
-                <input type="text" id="speciesInput" class="input-control" placeholder="Masukkan nama latin / lokal..." autocomplete="off" required>
+        <!-- Section Follow Instagram -->
+        <div class="social-box">
+            <div class="social-title">📸 TAG & FOLLOW DOKUMENTASI KAMI:</div>
+            <div class="social-links">
+                <a href="https://instagram.com/smaislamsudirman" target="_blank" class="social-btn">
+                    📷 @smaislamsudirman
+                </a>
+                <a href="https://instagram.com/lutf1anam" target="_blank" class="social-btn">
+                    📷 @lutf1anam
+                </a>
             </div>
-
-            <button type="submit" class="btn-submit">
-                SCAN & VERIFIKASI
-            </button>
-        </form>
-
-        <div id="feedback" class="feedback"></div>
-
-        <!-- Tampilan Selesai Jelajah -->
-        <div id="finishCard" class="finish-card">
-            <div class="finish-title">🏆 MISI JELAJAH SELESAI!</div>
-            <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 10px;">
-                Selamat! Kelompok kalian berhasil menyelesaikan seluruh tantangan Jelajah Teknologi 60 Menit dengan sangat baik.
-            </p>
-            <p style="font-size: 0.75rem; color: var(--accent-cyan);">
-                📸 *Jangan lupa rekam momen penutupan ini untuk bahan konten video singkat kalian!*
-            </p>
         </div>
 
         <footer class="footer">
             Pramuka Digital &bull; Jelajah Teknologi 60 Menit
         </footer>
     </div>
-
-    <script>
-        // Kunci jawaban yang diterima (bisa nama latin atau nama populer lokal)
-        // Contoh target tanaman: Pucuk Merah / Sansevieria / Bougainvillea / dll.
-        const VALID_ANSWERS = [
-            "SANSEVIERIA", "LIDAH MERTUA", 
-            "PUCUK MERAH", "SYZYGIUM MYRTIFOLIUM",
-            "BOUGAINVILLEA", "BUNGA KERTAS",
-            "PRAMUKA" // Kunci universal alternatif jika panitia ingin fleksibel
-        ];
-
-        function validateFlora(event) {
-            event.preventDefault();
-            
-            const userInput = document.getElementById("speciesInput").value.trim().toUpperCase();
-            const feedback = document.getElementById("feedback");
-            const finishCard = document.getElementById("finishCard");
-
-            // Cek apakah jawaban peserta mengandung salah satu kata kunci valid
-            const isCorrect = VALID_ANSWERS.some(answer => userInput.includes(answer));
-
-            if (isCorrect) {
-                feedback.className = "feedback success";
-                feedback.innerHTML = "✅ Identifikasi Tepat! Data Flora Terverifikasi.";
-                finishCard.style.display = "block";
-                
-                // Disable form
-                document.getElementById("speciesInput").disabled = true;
-                document.querySelector(".btn-submit").style.display = "none";
-            } else {
-                feedback.className = "feedback error";
-                feedback.innerHTML = "❌ HASIL BELUM SESUAI! Pastikan foto tanaman terfokus dengan Google Lens.";
-                finishCard.style.display = "none";
-            }
-        }
-    </script>
 
 </body>
 </html>
