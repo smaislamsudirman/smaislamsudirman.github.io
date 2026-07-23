@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS 1: Digital Navigation - Jelajah Teknologi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0f12;
+            --card-bg: rgba(22, 27, 34, 0.85);
+            --primary-amber: #ffb703;
+            --accent-cyan: #00f5d4;
+            --text-light: #f8f9fa;
+            --text-dim: #a0aec0;
+            --border-glow: rgba(255, 183, 3, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 183, 3, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 245, 212, 0.05) 0%, transparent 20%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-amber), var(--accent-cyan));
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            background: rgba(0, 245, 212, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-cyan);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-amber);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p.subtitle {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .mission-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--primary-amber);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .mission-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .coord-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed var(--accent-cyan);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .coord-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .coord-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            word-break: break-all;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary-amber), #e69d00);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 183, 3, 0.3);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.5);
+        }
+
+        .instructions {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .instructions li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .instructions li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 22px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-amber);
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            line-height: 22px;
+        }
+
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <span class="badge">Pos 1 &bull; Jelajah Sekolah</span>
+            <h1>Digital Navigation</h1>
+            <p class="subtitle">Lacak Koordinat Area Sekolah</p>
+        </header>
+
+        <section class="mission-box">
+            <div class="mission-title">🎯 MISI POS 1</div>
+            <p style="font-size: 0.8rem; color: var(--text-dim);">
+                Gunakan koordinat GPS dan Kompas Digital di HP kalian untuk menemukan lokasi rahasia Pos 2 di lingkungan sekolah!
+            </p>
+        </section>
+
+        <section class="coord-card">
+            <div class="coord-label">📍 Koordinat Target Pos 2</div>
+            <!-- Ganti angka koordinat ini sesuai titik di sekolah kalian -->
+            <div class="coord-value">-7.329841, 110.173842</div>
+            
+            <!-- Link Google Maps otomatis membuka koordinat di atas -->
+            <a href="https://www.google.com/maps/search/?api=1&query=-7.329841,110.173842" target="_blank" class="btn-action">
+                🚀 Buka Peta Digital
+            </a>
+        </section>
+
+        <ul class="instructions">
+            <li>Buka peta digital lewat tombol di atas atau salin nilai koordinat ke Google Maps.</li>
+            <li>Gunakan fitur **Kompas** pada smartphone untuk menentukan arah mata angin secara presisi.</li>
+            <li>Bergeraklah ke titik lokasi target (misal: Perpustakaan / Taman Sekolah).</li>
+            <li>Temukan **QR Code Pos 2** yang tersembunyi di area tersebut untuk melanjutkan jelajah!</li>
+        </ul>
+
+        <footer class="footer">
+            Pramuka Digital &bull; Jelajah Teknologi 60 Menit
+        </footer>
+    </div>
+
+</body>
+</html>
